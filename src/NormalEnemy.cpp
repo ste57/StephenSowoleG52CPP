@@ -13,7 +13,7 @@ NormalEnemy::NormalEnemy(BaseEngine* pEngine )
 
 	int xVal, yVal;
 
-	switch (rand() % 4)
+	switch (rand()%4)
 	{
 	case 0:
 		xVal = - (m_iDrawWidth/2);
@@ -77,8 +77,21 @@ void NormalEnemy::EnemyUpdate(int targetX, int targetY) {
 
 	if (diff_X != 0 || diff_Y != 0) {
 
-		m_iCurrentScreenX += ((diff_X/z) * 2); 
-		m_iCurrentScreenY += ((diff_Y/z) * 2); 
+		diff_X = ((diff_X/z) * 2);
+		diff_Y = ((diff_Y/z) * 2);
+
+		if (diff_X > 0.5) {
+
+			diff_X = 0.5;
+		}
+
+		if (diff_Y > 0.5) {
+
+			diff_Y = 0.5;
+		}
+
+		m_iCurrentScreenX += diff_X;
+		m_iCurrentScreenY += diff_Y;
 	}
 
 	// Ensure that the object gets redrawn on the display, if something changed 

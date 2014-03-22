@@ -1,6 +1,6 @@
  CourseworkBase
 
- Timestamp is 532d0be6 (Sat Mar 22 04:04:54 2014)
+ Timestamp is 532d18dd (Sat Mar 22 05:00:13 2014)
 
  Preferred load address is 00400000
 
@@ -38,13 +38,15 @@
   Address         Publics by Value              Rva+Base       Lib:Object
 
  0000:00000000       __except_list              00000000     <absolute>
- 0000:0000001c       ___safe_se_handler_count   0000001c     <absolute>
+ 0000:0000001d       ___safe_se_handler_count   0000001d     <absolute>
  0000:00009876       __ldused                   00009876     <absolute>
  0000:00009876       __fltused                  00009876     <absolute>
  0000:00000000       ___ImageBase               00400000     <linker-defined>
  0001:00000ae0       ??0Human@@QAE@PAVBaseEngine@@@Z 00401ae0 f   Human.obj
  0001:00000bca       _pow                       00401bca f   MSVCRT:MSVCR110.dll
  0001:00000bd0       ?pow@@YAMMH@Z              00401bd0 f i NormalEnemy.obj
+ 0001:00000bf8       __time64                   00401bf8 f   MSVCRT:MSVCR110.dll
+ 0001:00000bfe       _srand                     00401bfe f   MSVCRT:MSVCR110.dll
  0001:00000c10       ??0ImageData@@QAE@XZ       00401c10 f i Human.obj
  0001:00000c50       ??1Human@@UAE@XZ           00401c50 f   Human.obj
  0001:00000c80       ??1ImageData@@QAE@XZ       00401c80 f i Human.obj
@@ -70,8 +72,8 @@
  0001:00001340       ??0BaseEngine@@QAE@H@Z     00402340 f   BaseEngine.obj
  0001:00001490       _powf                      00402490 f i NormalEnemy.obj
  0001:000014e0       ??1BaseEngine@@UAE@XZ      004024e0 f   BaseEngine.obj
- 0001:00001580       ??_GBaseEngine@@UAEPAXI@Z  00402580 f i BaseEngine.obj
  0001:00001580       ??_EBaseEngine@@UAEPAXI@Z  00402580 f i BaseEngine.obj
+ 0001:00001580       ??_GBaseEngine@@UAEPAXI@Z  00402580 f i BaseEngine.obj
  0001:000015d0       ?CleanUp@BaseEngine@@UAEXXZ 004025d0 f   BaseEngine.obj
  0001:000015f0       ?CopyAllBackgroundBuffer@BaseEngine@@QAEXXZ 004025f0 f   BaseEngine.obj
  0001:000016e0       ?CopyBackgroundPixels@BaseEngine@@QAEXHHHH@Z 004026e0 f   BaseEngine.obj
@@ -84,6 +86,7 @@
  0001:00001e90       ?DrawOval@BaseEngine@@QAEXHHHHIPAUSDL_Surface@@@Z 00402e90 f   BaseEngine.obj
  0001:00002060       ?DrawPolygon@BaseEngine@@QAEXHPAN0IPAUSDL_Surface@@@Z 00403060 f   BaseEngine.obj
  0001:00002860       ?Draw@NormalEnemy@@UAEXXZ  00403860 f   NormalEnemy.obj
+ 0001:00002930       ?SetupBackgroundBuffer@MainGameFile@@UAEXXZ 00403930 f   MainGameFile.obj
  0001:00002a60       ?DrawRectangle@BaseEngine@@QAEXHHHHIPAUSDL_Surface@@@Z 00403a60 f   BaseEngine.obj
  0001:00002b30       ?DrawScreen@BaseEngine@@UAEXXZ 00403b30 f   BaseEngine.obj
  0001:00002b80       ?DrawString@BaseEngine@@QAEXHHPBDIPAVFont@@PAUSDL_Surface@@@Z 00403b80 f   BaseEngine.obj
@@ -119,8 +122,8 @@
  0001:00004840       ?UpdateAllObjects@BaseEngine@@UAEXH@Z 00405840 f   BaseEngine.obj
  0001:000048e0       ??0DisplayableObject@@QAE@PAVBaseEngine@@@Z 004058e0 f   DisplayableObject.obj
  0001:00004980       ??1DisplayableObject@@UAE@XZ 00405980 f   DisplayableObject.obj
- 0001:000049b0       ??_EDisplayableObject@@UAEPAXI@Z 004059b0 f i DisplayableObject.obj
  0001:000049b0       ??_GDisplayableObject@@UAEPAXI@Z 004059b0 f i DisplayableObject.obj
+ 0001:000049b0       ??_EDisplayableObject@@UAEPAXI@Z 004059b0 f i DisplayableObject.obj
  0001:00004a00       ?DoUpdate@DisplayableObject@@UAEXH@Z 00405a00 f   DisplayableObject.obj
  0001:00004a20       ?Draw@DisplayableObject@@UAEXXZ 00405a20 f   DisplayableObject.obj
  0001:00004ae0       ?EnemyUpdate@DisplayableObject@@UAEXHH@Z 00405ae0 f   DisplayableObject.obj
@@ -150,11 +153,10 @@
  0001:000061c0       ?ShrinkFrom@ImageData@@QAEXPAV1@H@Z 004071c0 f   JPGImage.obj
  0001:00006430       ??0MainGameFile@@QAE@XZ    00407430 f   MainGameFile.obj
  0001:00006470       ??1MainGameFile@@UAE@XZ    00407470 f   MainGameFile.obj
- 0001:00006520       ??_EMainGameFile@@UAEPAXI@Z 00407520 f i MainGameFile.obj
  0001:00006520       ??_GMainGameFile@@UAEPAXI@Z 00407520 f i MainGameFile.obj
+ 0001:00006520       ??_EMainGameFile@@UAEPAXI@Z 00407520 f i MainGameFile.obj
  0001:00006570       ?DrawableObjectsChanged@BaseEngine@@QAEXXZ 00407570 f i MainGameFile.obj
  0001:000065a0       ?InitialiseObjects@MainGameFile@@UAEHXZ 004075a0 f   MainGameFile.obj
- 0001:00006720       ?SetupBackgroundBuffer@MainGameFile@@UAEXXZ 00407720 f   MainGameFile.obj
  0001:00006750       ?UpdateAllObjects@MainGameFile@@UAEXH@Z 00407750 f   MainGameFile.obj
  0001:00006850       ??0SimpleShape@@QAE@PAVMyProjectMain@@@Z 00407850 f i MyProjectMain.obj
  0001:000069a0       ??1SimpleShape@@UAE@XZ     004079a0 f i MyProjectMain.obj
@@ -193,10 +195,10 @@
  0001:00007fd0       ??1BouncingBall1@@UAE@XZ   00408fd0 f i BouncingBall.obj
  0001:00008000       ??1BouncingBall2@@UAE@XZ   00409000 f i BouncingBall.obj
  0001:00008030       ??1BouncingBall@@UAE@XZ    00409030 f   BouncingBall.obj
- 0001:00008060       ??_GBouncingBall1@@UAEPAXI@Z 00409060 f i BouncingBall.obj
  0001:00008060       ??_EBouncingBall1@@UAEPAXI@Z 00409060 f i BouncingBall.obj
- 0001:000080b0       ??_EBouncingBall2@@UAEPAXI@Z 004090b0 f i BouncingBall.obj
+ 0001:00008060       ??_GBouncingBall1@@UAEPAXI@Z 00409060 f i BouncingBall.obj
  0001:000080b0       ??_GBouncingBall2@@UAEPAXI@Z 004090b0 f i BouncingBall.obj
+ 0001:000080b0       ??_EBouncingBall2@@UAEPAXI@Z 004090b0 f i BouncingBall.obj
  0001:00008100       ??_GBouncingBall@@UAEPAXI@Z 00409100 f i BouncingBall.obj
  0001:00008100       ??_EBouncingBall@@UAEPAXI@Z 00409100 f i BouncingBall.obj
  0001:00008150       ?Calculate@MovementPosition@@QAEXH@Z 00409150 f i BouncingBall.obj
@@ -231,15 +233,16 @@
  0001:00009910       ?SetBaseTilesPositionOnScreen@TileManager@@QAEXHH@Z 0040a910 f i BouncingBallMain.obj
  0001:00009940       ?SetSize@TileManager@@QAEXHH@Z 0040a940 f i BouncingBallMain.obj
  0001:000099f0       ?SetupBackgroundBuffer@BouncingBallMain@@UAEXXZ 0040a9f0 f   BouncingBallMain.obj
+ 0001:0000a120       ?EnemyUpdate@NormalEnemy@@UAEXHH@Z 0040b120 f   NormalEnemy.obj
  0001:0000a2e0       ??0Demo2aMain@@QAE@XZ      0040b2e0 f   Demo2aMain.obj
  0001:0000a320       ??1Demo2aMain@@UAE@XZ      0040b320 f   Demo2aMain.obj
- 0001:0000a350       ??_EDemo2aMain@@UAEPAXI@Z  0040b350 f i Demo2aMain.obj
  0001:0000a350       ??_GDemo2aMain@@UAEPAXI@Z  0040b350 f i Demo2aMain.obj
+ 0001:0000a350       ??_EDemo2aMain@@UAEPAXI@Z  0040b350 f i Demo2aMain.obj
  0001:0000a3a0       ?SetupBackgroundBuffer@Demo2aMain@@UAEXXZ 0040b3a0 f   Demo2aMain.obj
  0001:0000a3d0       ??0Demo2Main@@QAE@XZ       0040b3d0 f   Demo2Main.obj
  0001:0000a460       ??1Demo2Main@@UAE@XZ       0040b460 f   Demo2Main.obj
- 0001:0000a4e0       ??_GDemo2Main@@UAEPAXI@Z   0040b4e0 f i Demo2Main.obj
  0001:0000a4e0       ??_EDemo2Main@@UAEPAXI@Z   0040b4e0 f i Demo2Main.obj
+ 0001:0000a4e0       ??_GDemo2Main@@UAEPAXI@Z   0040b4e0 f i Demo2Main.obj
  0001:0000a530       ?DrawStrings@Demo2Main@@UAEXXZ 0040b530 f   Demo2Main.obj
  0001:0000a5b0       ?GameAction@Demo2Main@@UAEXXZ 0040b5b0 f   Demo2Main.obj
  0001:0000a610       ?InitialiseObjects@Demo2Main@@UAEHXZ 0040b610 f   Demo2Main.obj
@@ -248,8 +251,8 @@
  0001:0000a790       ?SetupBackgroundBuffer@Demo2Main@@UAEXXZ 0040b790 f   Demo2Main.obj
  0001:0000a7c0       ??0Demo2Object@@QAE@PAVDemo2Main@@@Z 0040b7c0 f   Demo2Object.obj
  0001:0000a8c0       ??1Demo2Object@@UAE@XZ     0040b8c0 f   Demo2Object.obj
- 0001:0000a8f0       ??_GDemo2Object@@UAEPAXI@Z 0040b8f0 f i Demo2Object.obj
  0001:0000a8f0       ??_EDemo2Object@@UAEPAXI@Z 0040b8f0 f i Demo2Object.obj
+ 0001:0000a8f0       ??_GDemo2Object@@UAEPAXI@Z 0040b8f0 f i Demo2Object.obj
  0001:0000a940       ?DoUpdate@Demo2Object@@UAEXH@Z 0040b940 f   Demo2Object.obj
  0001:0000aa10       ?Draw@Demo2Object@@UAEXXZ  0040ba10 f   Demo2Object.obj
  0001:0000aaa0       ?DrawScreenOval@BaseEngine@@QAEXHHHHI@Z 0040baa0 f i Demo2Object.obj
@@ -274,8 +277,8 @@
  0001:0000b320       ?SetupBackgroundBuffer@Demo3Main@@UAEXXZ 0040c320 f   Demo3Main.obj
  0001:0000b4f0       ??0Demo3Object@@QAE@PAVDemo3Main@@HH@Z 0040c4f0 f   Demo3Object.obj
  0001:0000b640       ??1Demo3Object@@UAE@XZ     0040c640 f   Demo3Object.obj
- 0001:0000b670       ??_GDemo3Object@@UAEPAXI@Z 0040c670 f i Demo3Object.obj
  0001:0000b670       ??_EDemo3Object@@UAEPAXI@Z 0040c670 f i Demo3Object.obj
+ 0001:0000b670       ??_GDemo3Object@@UAEPAXI@Z 0040c670 f i Demo3Object.obj
  0001:0000b6c0       ?DoUpdate@Demo3Object@@UAEXH@Z 0040c6c0 f   Demo3Object.obj
  0001:0000b950       ?Draw@Demo3Object@@UAEXXZ  0040c950 f   Demo3Object.obj
  0001:0000b9e0       ?GetTileManager@Demo3Main@@QAEAAVDemo3TileManager@@XZ 0040c9e0 f i Demo3Object.obj
@@ -439,7 +442,6 @@
  0001:0000ed40       __alloca_probe             0040fd40     MSVCRT:chkstk.obj
  0001:0000ed6c       _SDL_SetModuleHandle       0040fd6c f   sdl:SDL.dll
  0001:0000ed72       _SDL_strlcpy               0040fd72 f   sdl:SDL.dll
- 0001:0000ed80       ?EnemyUpdate@NormalEnemy@@UAEXHH@Z 0040fd80 f   NormalEnemy.obj
  0001:0000eec0       ??0NormalEnemy@@QAE@PAVBaseEngine@@@Z 0040fec0 f   NormalEnemy.obj
  0002:00000000       ___xc_a                    00413000     MSVCRT:cinitexe.obj
  0002:00000208       ___xc_z                    00413208     MSVCRT:cinitexe.obj
@@ -476,6 +478,7 @@
  0002:00000b20       __xmm@41f00000000000000000000000000000 00413b20     JPGImage.obj
  0002:00000b3c       ??_7MainGameFile@@6B@      00413b3c     MainGameFile.obj
  0002:00000ba8       ??_C@_1KG@PMBJGNFE@?$AAc?$AA?3?$AA?2?$AAu?$AAs?$AAe?$AAr?$AAs?$AA?2?$AAs?$AAt?$AAe?$AAp?$AAh?$AAe?$AAn?$AA?2?$AAd?$AAe?$AAs?$AAk?$AAt?$AAo?$AAp?$AA?2?$AAd?$AAr?$AAo?$AAp?$AAb?$AAo?$AAx@ 00413ba8     MyProjectMain.obj
+ 0002:00000c50       ??_C@_0BL@KONJPELA@Images?1Background?1Map1?4jpg?$AA@ 00413c50     MainGameFile.obj
  0002:00000c70       ??_C@_1BA@GEGIDABA@?$AAi?$AAX?$AA?5?$AA?$DO?$AA?$DN?$AA?5?$AA0?$AA?$AA@ 00413c70     MyProjectMain.obj
  0002:00000c84       ??_C@_1DC@EBDLPFLK@?$AAi?$AAX?$AA?5?$AA?$DM?$AA?5?$AAm?$AA_?$AAi?$AAI?$AAn?$AAt?$AAs?$AAP?$AAe?$AAr?$AAS?$AAc?$AAr?$AAe?$AAe?$AAn?$AAR?$AAo?$AAw?$AA?$AA@ 00413c84     MyProjectMain.obj
  0002:00000cc0       ??_C@_1BA@PJGHNBGG@?$AAi?$AAY?$AA?5?$AA?$DO?$AA?$DN?$AA?5?$AA0?$AA?$AA@ 00413cc0     MyProjectMain.obj
@@ -558,6 +561,7 @@
  0002:00001410       ??_C@_0BA@KMDNPDDA@WinMain?$CI?$CJ?5error?$AA@ 00414410     sdlmain:SDL_win32_main.obj
  0002:00001420       ??_C@_09KDGFPKMD@DDRAW?4DLL?$AA@ 00414420     sdlmain:SDL_win32_main.obj
  0002:00001430       __load_config_used         00414430     MSVCRT:loadcfg.obj
+ 0002:00001478       ??_C@_0BL@CIENIGBO@Images?1Background?1Map2?4jpg?$AA@ 00414478     MainGameFile.obj
  0002:000017c0       ??_R4Human@@6B@            004147c0     Human.obj
  0002:000017d8       ??_R3Human@@8              004147d8     Human.obj
  0002:000017ec       ??_R2Human@@8              004147ec     Human.obj
@@ -760,7 +764,9 @@
  0004:00000438       __imp___unlock             00417438     MSVCRT:MSVCR110.dll
  0004:0000043c       __imp____getmainargs       0041743c     MSVCRT:MSVCR110.dll
  0004:00000440       __imp__pow                 00417440     MSVCRT:MSVCR110.dll
- 0004:00000444       \177MSVCR110_NULL_THUNK_DATA 00417444     MSVCRT:MSVCR110.dll
+ 0004:00000444       __imp___time64             00417444     MSVCRT:MSVCR110.dll
+ 0004:00000448       __imp__srand               00417448     MSVCRT:MSVCR110.dll
+ 0004:0000044c       \177MSVCR110_NULL_THUNK_DATA 0041744c     MSVCRT:MSVCR110.dll
  0004:00000490       __imp__SDL_SetModuleHandle 00417490     sdl:SDL.dll
  0004:00000494       __imp__SDL_GetWMInfo       00417494     sdl:SDL.dll
  0004:00000498       __imp__SDL_Quit            00417498     sdl:SDL.dll

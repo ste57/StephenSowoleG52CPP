@@ -3,11 +3,14 @@
 
 #include "MainGameFile.h"
 #include "NormalEnemy.h"
+#include "JPGImage.h"
+
+#include "time.h"
 
 #define ENEMY_COUNT 10
 
 
-MainGameFile::MainGameFile(void) : BaseEngine(0)
+MainGameFile::MainGameFile(void) : BaseEngine((ENEMY_COUNT+1))
 {
 }
 
@@ -27,16 +30,16 @@ int MainGameFile::InitialiseObjects(void)
 	DestroyOldObjects(); 
 
 	// Create an array one element larger than the number of objects that you want. 
-	m_ppDisplayableObjects = new DisplayableObject*[ENEMY_COUNT + 1]; 
+	m_ppDisplayableObjects = new DisplayableObject*[(ENEMY_COUNT + 2)]; 
 
 	m_ppDisplayableObjects[0] = human; 
 
-	for (int i = 1; i < ENEMY_COUNT; i++) {
-		
+	for (int i = 1; i < (ENEMY_COUNT + 1); i++) {
+
 		m_ppDisplayableObjects[i] = new NormalEnemy(this);
 	}
 
-	m_ppDisplayableObjects[ENEMY_COUNT] = NULL; 
+	m_ppDisplayableObjects[(ENEMY_COUNT + 1)] = NULL; 
 
 
 	return 0;
@@ -45,8 +48,26 @@ int MainGameFile::InitialiseObjects(void)
 
 void MainGameFile::SetupBackgroundBuffer(void)
 {
+	ImageData x;
 
-	FillBackground( 0x000000 );
+	srand(time(NULL));
+
+	switch (rand()%2)
+	{
+
+	case 0:
+		x.LoadImage("Images/Background/Map1.jpg");
+		break;
+
+	case 1:
+		x.LoadImage("Images/Background/Map2.jpg");
+		break;
+
+	default:
+		break;
+	}
+
+	x.RenderImage(this->GetBackground(), 0, 0, 0, 0, x.GetWidth(), x.GetHeight());
 }
 
 
