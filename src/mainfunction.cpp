@@ -3,7 +3,6 @@
 #include "templates.h"
 
 // Needs one of the following #includes, to include the class definition
-#include "MyProjectMain.h"
 #include "MainGameFile.h"
 
 #define BASE_SCREEN_WIDTH 800

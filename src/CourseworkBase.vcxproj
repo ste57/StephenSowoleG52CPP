@@ -88,8 +88,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DemoAMain.h" />
-    <ClInclude Include="DemoBObject.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="BaseEngine.h" />
     <ClInclude Include="DisplayableObject.h" />
@@ -117,8 +115,6 @@
     <ClInclude Include="MyProjectMain.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DemoAMain.cpp" />
-    <ClCompile Include="DemoBObject.cpp" />
     <ClCompile Include="Human.cpp" />
     <ClCompile Include="mainfunction.cpp" />
     <ClCompile Include="BaseEngine.cpp" />

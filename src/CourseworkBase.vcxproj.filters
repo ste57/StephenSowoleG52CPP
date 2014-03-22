@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Demo">
       <UniqueIdentifier>{43825ca5-b5e1-402d-a57a-be1b7f41d1ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Enemies">
+      <UniqueIdentifier>{9d2c4fa0-aa75-4172-9c2b-30b9d602593f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Human">
+      <UniqueIdentifier>{6556ebf3-f8ca-4b97-813b-82a2c63ae282}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h">
@@ -91,12 +97,6 @@
       <Filter>Header Files\Demo</Filter>
     </ClInclude>
     <ClInclude Include="MyProjectMain.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DemoAMain.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DemoBObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MainGameFile.h">
@@ -170,20 +170,14 @@
     <ClCompile Include="MyProjectMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DemoAMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DemoBObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MainGameFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Human.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NormalEnemy.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Human.cpp">
+      <Filter>Source Files\Human</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,8 +2,9 @@
 #include "templates.h"
 
 #include "MainGameFile.h"
-#include "Human.h"
 #include "NormalEnemy.h"
+
+#define ENEMY_COUNT 10
 
 
 MainGameFile::MainGameFile(void) : BaseEngine(0)
@@ -18,6 +19,7 @@ MainGameFile::~MainGameFile(void)
 
 int MainGameFile::InitialiseObjects(void)
 {
+	human = new Human(this);
 
 	DrawableObjectsChanged(); 
 
@@ -25,11 +27,17 @@ int MainGameFile::InitialiseObjects(void)
 	DestroyOldObjects(); 
 
 	// Create an array one element larger than the number of objects that you want. 
-	m_ppDisplayableObjects = new DisplayableObject*[3]; 
+	m_ppDisplayableObjects = new DisplayableObject*[ENEMY_COUNT + 1]; 
 
-	m_ppDisplayableObjects[0] = new Human(this); 
-	m_ppDisplayableObjects[1] = new NormalEnemy(this);
-	m_ppDisplayableObjects[2] = NULL; 
+	m_ppDisplayableObjects[0] = human; 
+
+	for (int i = 1; i < ENEMY_COUNT; i++) {
+		
+		m_ppDisplayableObjects[i] = new NormalEnemy(this);
+	}
+
+	m_ppDisplayableObjects[ENEMY_COUNT] = NULL; 
+
 
 	return 0;
 }
@@ -55,7 +63,7 @@ void MainGameFile::UpdateAllObjects( int iCurrentTime )
 
 			} else {
 
-				m_ppDisplayableObjects[i]->EnemyUpdate(0,0);
+				m_ppDisplayableObjects[i]->EnemyUpdate(human->GetXCentre(),human->GetYCentre());
 			}
 
 			if ( m_iDrawableObjectsChanged )
