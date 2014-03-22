@@ -284,7 +284,7 @@ void BaseEngine::GameAction()
 		return;
 
 	// Don't act for another 10 ticks
-	SetTimeToAct( 10 );
+	SetTimeToAct( 20);//10 );
 
 	// Tell all objects to update themselves.
 	// If they need the screen to redraw then they should say so, so that GameRender() will

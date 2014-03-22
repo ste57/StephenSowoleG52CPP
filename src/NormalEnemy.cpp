@@ -80,16 +80,6 @@ void NormalEnemy::EnemyUpdate(int targetX, int targetY) {
 		diff_X = ((diff_X/z) * 2);
 		diff_Y = ((diff_Y/z) * 2);
 
-		if (diff_X > 0.5) {
-
-			diff_X = 0.5;
-		}
-
-		if (diff_Y > 0.5) {
-
-			diff_Y = 0.5;
-		}
-
 		m_iCurrentScreenX += diff_X;
 		m_iCurrentScreenY += diff_Y;
 	}
