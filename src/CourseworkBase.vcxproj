@@ -88,6 +88,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bomb.h" />
     <ClInclude Include="EnemyProperties.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="BaseEngine.h" />
@@ -116,6 +117,7 @@
     <ClInclude Include="MyProjectMain.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="EnemyProperties.cpp" />
     <ClCompile Include="Human.cpp" />
     <ClCompile Include="mainfunction.cpp" />

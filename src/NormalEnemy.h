@@ -11,5 +11,6 @@ public:
 	void Draw(void);
 	void checkCollisions(int targetX, int targetY, int radius);
 	bool readyToDelete(void);
+	bool isEnemy(void);
 };
 

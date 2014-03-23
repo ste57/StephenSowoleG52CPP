@@ -5,8 +5,8 @@
 #include "JPGImage.h"
 #include "math.h"
 
-#define MIN_ENEMY_SPEED 1.7
-#define MAX_ENEMY_SPPED 2.0//5
+#define MIN_ENEMY_SPEED 1.45
+#define MAX_ENEMY_SPPED 1.45//5
 
 NormalEnemy::NormalEnemy(BaseEngine* pEngine ) 
 	: EnemyProperties( pEngine )
@@ -98,4 +98,9 @@ void NormalEnemy::checkCollisions(int targetX, int targetY, int radius)
 bool NormalEnemy::readyToDelete(void) {
 
 	return isReadyToDelete;
+}
+
+bool NormalEnemy::isEnemy(void) {
+
+	return true;
 }

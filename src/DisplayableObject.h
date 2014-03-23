@@ -25,9 +25,13 @@ public:
 
 	/** my methods**/
 
+
+
 	virtual bool readyToDelete(void);
 
 	virtual bool isHuman(void);
+
+	virtual bool isEnemy(void);
 
 	virtual void EnemyUpdate(int targetX, int targetY, int radius);
 

@@ -52,6 +52,11 @@ bool DisplayableObject::isHuman(void) {
 	return false;
 }
 
+bool DisplayableObject::isEnemy(void) {
+
+	return false;
+}
+
 void DisplayableObject::EnemyUpdate(int targetX, int targetY, int radius) {
 
 

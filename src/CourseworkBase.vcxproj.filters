@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Human">
       <UniqueIdentifier>{6556ebf3-f8ca-4b97-813b-82a2c63ae282}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Powerups">
+      <UniqueIdentifier>{98995f1e-2858-4410-b658-deba1ae5e6fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h">
@@ -111,6 +114,9 @@
     <ClInclude Include="EnemyProperties.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainfunction.cpp">
@@ -184,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="EnemyProperties.cpp">
       <Filter>Source Files\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

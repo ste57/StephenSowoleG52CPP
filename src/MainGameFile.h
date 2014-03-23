@@ -6,6 +6,8 @@ class MainGameFile :
 	public BaseEngine
 {
 public:
+
+	int arrayCounter, enemyCounter, spawnTimeStart;
 	Human* human;
 
 	MainGameFile(void);
@@ -14,5 +16,7 @@ public:
 	void SetupBackgroundBuffer(void);
 	void UpdateAllObjects( int iCurrentTime );
 	void removeObject(int position);
+	void spawnEnemies(int iCurrentTime);
+	void addEnemy(void);
 };
 
