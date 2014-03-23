@@ -3,13 +3,12 @@
 
 #include "NormalEnemy.h"
 #include "JPGImage.h"
-#include "math.h"
 
 #define MIN_ENEMY_SPEED 1.7
 #define MAX_ENEMY_SPPED 2.0//5
 
 NormalEnemy::NormalEnemy(BaseEngine* pEngine ) 
-	: DisplayableObject( pEngine ) 
+	: EnemyProperties( pEngine ) 
 {
 	// Current and previous coordinates for the object - set them the same 
 	//initially 
@@ -42,8 +41,7 @@ NormalEnemy::NormalEnemy(BaseEngine* pEngine )
 		break;
 	}
 
-	speed = RandomFloatBetween(MIN_ENEMY_SPEED, MAX_ENEMY_SPPED);
-	printf("speed = %f\n", speed);
+	SetSpeed(RandomFloatBetween(MIN_ENEMY_SPEED, MAX_ENEMY_SPPED));
 
 	m_iCurrentScreenX = m_iPreviousScreenX = xVal; 
 	m_iCurrentScreenY = m_iPreviousScreenY = yVal; 
@@ -61,12 +59,6 @@ NormalEnemy::~NormalEnemy(void)
 {
 }
 
-float NormalEnemy::RandomFloatBetween(float firstNumber, float secondNumber)
-{
-	float diff = secondNumber - firstNumber;
-	return (((float) (rand() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + firstNumber;
-}
-
 
 void NormalEnemy::Draw(void)
 {
@@ -79,20 +71,4 @@ void NormalEnemy::Draw(void)
 	m_iDrawWidth = m_iDrawHeight = x.GetWidth(); 
 
 	StoreLastScreenPositionAndUpdateRect();
-}
-
-void NormalEnemy::EnemyUpdate(int targetX, int targetY) {
-
-	float diff_X = ((targetX - m_iDrawWidth/2) - m_iCurrentScreenX);
-	float diff_Y = ((targetY - m_iDrawHeight/2) - m_iCurrentScreenY);
-	float z = pow((pow(diff_X,2) + pow(diff_Y,2)), 0.5f);
-
-	if (diff_X != 0 || diff_Y != 0) {
-
-		m_iCurrentScreenX += ((diff_X/z) * speed);
-		m_iCurrentScreenY += ((diff_Y/z) * speed);
-	}
-
-	// Ensure that the object gets redrawn on the display, if something changed 
-	RedrawObjects();
 }

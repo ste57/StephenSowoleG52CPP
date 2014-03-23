@@ -108,6 +108,9 @@
     <ClInclude Include="NormalEnemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyProperties.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainfunction.cpp">
@@ -178,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="Human.cpp">
       <Filter>Source Files\Human</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyProperties.cpp">
+      <Filter>Source Files\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
