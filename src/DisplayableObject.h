@@ -35,6 +35,7 @@ public:
 
 	virtual void EnemyUpdate(int targetX, int targetY, int radius);
 
+	virtual void PowerupUpdate(DisplayableObject ** enemyArray);
 
 	/***/
 

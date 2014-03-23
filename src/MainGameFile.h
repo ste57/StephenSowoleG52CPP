@@ -7,7 +7,7 @@ class MainGameFile :
 {
 public:
 
-	int arrayCounter, enemyCounter, spawnTimeStart;
+	int arrayCounter, enemyCounter, powerupCounter, spawnTimeStart, powerupTimeStart;
 	Human* human;
 
 	MainGameFile(void);
@@ -18,5 +18,7 @@ public:
 	void removeObject(int position);
 	void spawnEnemies(int iCurrentTime);
 	void addEnemy(void);
+	void spawnPowerups(int iCurrentTime);
+	void addPowerup(void);
 };
 

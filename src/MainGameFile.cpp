@@ -47,7 +47,9 @@ int MainGameFile::InitialiseObjects(void)
 
 	arrayCounter = 1;
 	enemyCounter = 0;
+	powerupCounter = 0;
 	spawnTimeStart = 0;
+	powerupTimeStart = 0;
 
 	return 0;
 }
@@ -79,6 +81,7 @@ void MainGameFile::SetupBackgroundBuffer(void)
 void MainGameFile::UpdateAllObjects(int iCurrentTime)
 {
 	spawnEnemies(iCurrentTime);
+	spawnPowerups(iCurrentTime);
 
 	m_iDrawableObjectsChanged = 0;
 
@@ -99,12 +102,32 @@ void MainGameFile::UpdateAllObjects(int iCurrentTime)
 			} else if (m_ppDisplayableObjects[i]->isEnemy() == true) {
 
 				m_ppDisplayableObjects[i]->EnemyUpdate(human->GetXCentre(),human->GetYCentre(),human->getWidth());
+
+			} else {
+
+				m_ppDisplayableObjects[i]->PowerupUpdate(m_ppDisplayableObjects);
 			}
 
 			if ( m_iDrawableObjectsChanged )
 				return; // Abort! Something changed in the array
 		}
 	}
+}
+
+void MainGameFile::spawnPowerups(int iCurrentTime) {
+
+	if (((iCurrentTime - powerupTimeStart) >= POWERUP_SPAWN_TIME) && (powerupCounter <= MAX_POWERUP_COUNT) && (arrayCounter < MAX_OBJECTS)) {
+
+		addPowerup();
+		powerupTimeStart = iCurrentTime;
+	}
+}
+
+void MainGameFile::addPowerup(void) {
+
+	m_ppDisplayableObjects[arrayCounter] = new Bomb(this);
+	arrayCounter++;
+	powerupCounter++;
 }
 
 void MainGameFile::spawnEnemies(int iCurrentTime) {

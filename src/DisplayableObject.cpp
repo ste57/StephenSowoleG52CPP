@@ -62,6 +62,10 @@ void DisplayableObject::EnemyUpdate(int targetX, int targetY, int radius) {
 
 }
 
+void DisplayableObject::PowerupUpdate(DisplayableObject ** enemyArray) {
+
+}
+
 void DisplayableObject::StoreLastScreenPositionAndUpdateRect() 
 {
 	// Our initial rectangle that needs updating is the current screen position

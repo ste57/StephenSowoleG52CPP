@@ -37,3 +37,8 @@ void Bomb::Draw(void) {
 
 	StoreLastScreenPositionAndUpdateRect();
 }
+
+void Bomb::PowerupUpdate(DisplayableObject ** enemyArray) {
+
+
+}

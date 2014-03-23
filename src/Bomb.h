@@ -7,5 +7,6 @@ public:
 	Bomb(BaseEngine* pEngine);
 	~Bomb(void);
 	void Draw(void);
+	void PowerupUpdate(DisplayableObject ** enemyArray);
 };
 
