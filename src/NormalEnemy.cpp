@@ -5,6 +5,9 @@
 #include "JPGImage.h"
 #include "math.h"
 
+#define MIN_ENEMY_SPEED 1.7
+#define MAX_ENEMY_SPPED 2.0//5
+
 NormalEnemy::NormalEnemy(BaseEngine* pEngine ) 
 	: DisplayableObject( pEngine ) 
 {
@@ -39,6 +42,9 @@ NormalEnemy::NormalEnemy(BaseEngine* pEngine )
 		break;
 	}
 
+	speed = RandomFloatBetween(MIN_ENEMY_SPEED, MAX_ENEMY_SPPED);
+	printf("speed = %f\n", speed);
+
 	m_iCurrentScreenX = m_iPreviousScreenX = xVal; 
 	m_iCurrentScreenY = m_iPreviousScreenY = yVal; 
 	// The object coordinate will be the top left of the object 
@@ -53,6 +59,12 @@ NormalEnemy::NormalEnemy(BaseEngine* pEngine )
 
 NormalEnemy::~NormalEnemy(void)
 {
+}
+
+float NormalEnemy::RandomFloatBetween(float firstNumber, float secondNumber)
+{
+	float diff = secondNumber - firstNumber;
+	return (((float) (rand() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + firstNumber;
 }
 
 
@@ -77,11 +89,8 @@ void NormalEnemy::EnemyUpdate(int targetX, int targetY) {
 
 	if (diff_X != 0 || diff_Y != 0) {
 
-		diff_X = ((diff_X/z) * 2);
-		diff_Y = ((diff_Y/z) * 2);
-
-		m_iCurrentScreenX += diff_X;
-		m_iCurrentScreenY += diff_Y;
+		m_iCurrentScreenX += ((diff_X/z) * speed);
+		m_iCurrentScreenY += ((diff_Y/z) * speed);
 	}
 
 	// Ensure that the object gets redrawn on the display, if something changed 

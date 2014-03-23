@@ -5,7 +5,7 @@
 #include "JPGImage.h"
 
 #define HUMAN_CIRCUMFERENCE 15
-#define HUMAN_SPEED 4
+#define HUMAN_SPEED 6
 
 Human::Human(BaseEngine* pEngine ) 
 	: DisplayableObject( pEngine ) 
