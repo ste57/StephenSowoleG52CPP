@@ -15,7 +15,7 @@ EnemyProperties::~EnemyProperties(void)
 
 }
 
-void EnemyProperties::EnemyUpdate(int targetX, int targetY) {
+void EnemyProperties::EnemyUpdate(int targetX, int targetY, int radius) {
 
 	float diff_X = ((targetX - m_iDrawWidth/2) - m_iCurrentScreenX);
 	float diff_Y = ((targetY - m_iDrawHeight/2) - m_iCurrentScreenY);
@@ -27,17 +27,14 @@ void EnemyProperties::EnemyUpdate(int targetX, int targetY) {
 		m_iCurrentScreenY += ((diff_Y/z) * speed);
 	}
 
-	checkCollisions(targetX, targetY);
+	checkCollisions(targetX, targetY, radius);
 
 	// Ensure that the object gets redrawn on the display, if something changed 
 	RedrawObjects();
 }
 
-void EnemyProperties::checkCollisions(int targetX, int targetY)
+void EnemyProperties::checkCollisions(int targetX, int targetY, int radius)
 {
-
-
-
 }
 
 void EnemyProperties::SetSpeed(float speedSet)

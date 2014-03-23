@@ -13,5 +13,6 @@ public:
 	int InitialiseObjects(void);
 	void SetupBackgroundBuffer(void);
 	void UpdateAllObjects( int iCurrentTime );
+	void removeObject(int position);
 };
 

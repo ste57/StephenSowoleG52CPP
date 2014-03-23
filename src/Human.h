@@ -11,5 +11,6 @@ public:
 	void Draw(void);
 	void DoUpdate(int iCurrentTime);
 	bool isHuman(void);
+	int getWidth(void);
 };
 

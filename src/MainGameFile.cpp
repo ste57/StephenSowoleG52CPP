@@ -7,10 +7,12 @@
 
 #include "time.h"
 
+#define MAX_OBJECTS 100
+
 #define ENEMY_COUNT 10
 
 
-MainGameFile::MainGameFile(void) : BaseEngine((ENEMY_COUNT+1))
+MainGameFile::MainGameFile(void) : BaseEngine(MAX_OBJECTS)
 {
 }
 
@@ -30,17 +32,22 @@ int MainGameFile::InitialiseObjects(void)
 	DestroyOldObjects(); 
 
 	// Create an array one element larger than the number of objects that you want. 
-	m_ppDisplayableObjects = new DisplayableObject*[(ENEMY_COUNT + 2)]; 
+	m_ppDisplayableObjects = new DisplayableObject*[MAX_OBJECTS];
 
-	m_ppDisplayableObjects[0] = human; 
+	for (int i = 0; i < MAX_OBJECTS; i++) {
 
-	for (int i = 1; i < (ENEMY_COUNT + 1); i++) {
+		m_ppDisplayableObjects[i] = NULL;
+	}
+
+	m_ppDisplayableObjects[0] = human;
+	//m_ppDisplayableObjects[1] = NULL;
+
+	for (int i = 1; i <= ENEMY_COUNT; i++) {
 
 		m_ppDisplayableObjects[i] = new NormalEnemy(this);
 	}
 
-	m_ppDisplayableObjects[(ENEMY_COUNT + 1)] = NULL; 
-
+	m_ppDisplayableObjects[(ENEMY_COUNT + 1)] = NULL;
 
 	return 0;
 }
@@ -74,21 +81,38 @@ void MainGameFile::SetupBackgroundBuffer(void)
 void MainGameFile::UpdateAllObjects( int iCurrentTime )
 {
 	m_iDrawableObjectsChanged = 0;
+
 	if ( m_ppDisplayableObjects != NULL )
 	{
 		for ( int i = 0 ; m_ppDisplayableObjects[i] != NULL ; i++ )
 		{
+			if ( m_ppDisplayableObjects[i]->readyToDelete()) {
+				
+				removeObject(i);
+				continue;
+			}
+
 			if (m_ppDisplayableObjects[i]->isHuman() == true) {
 
 				m_ppDisplayableObjects[i]->DoUpdate(iCurrentTime);
 
 			} else {
 
-				m_ppDisplayableObjects[i]->EnemyUpdate(human->GetXCentre(),human->GetYCentre());
+				m_ppDisplayableObjects[i]->EnemyUpdate(human->GetXCentre(),human->GetYCentre(),human->getWidth());
 			}
 
 			if ( m_iDrawableObjectsChanged )
 				return; // Abort! Something changed in the array
 		}
+	}
+}
+
+void MainGameFile::removeObject(int position) {
+
+	delete m_ppDisplayableObjects[position];
+
+	for (position; m_ppDisplayableObjects[position] != NULL; position++) {
+
+		m_ppDisplayableObjects[position] = m_ppDisplayableObjects[(position+1)];
 	}
 }

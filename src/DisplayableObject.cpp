@@ -1,6 +1,4 @@
 #include "header.h"
-
-
 #include "BaseEngine.h"
 
 #include "DisplayableObject.h"
@@ -44,12 +42,17 @@ void DisplayableObject::Draw()
 	StoreLastScreenPositionAndUpdateRect();
 }
 
+bool DisplayableObject::readyToDelete(void) {
+
+	return false;
+}
+
 bool DisplayableObject::isHuman(void) {
 
 	return false;
 }
 
-void DisplayableObject::EnemyUpdate(int targetX, int targetY) {
+void DisplayableObject::EnemyUpdate(int targetX, int targetY, int radius) {
 
 
 }

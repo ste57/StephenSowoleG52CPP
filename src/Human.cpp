@@ -4,7 +4,6 @@
 #include "Human.h"
 #include "JPGImage.h"
 
-#define HUMAN_CIRCUMFERENCE 15
 #define HUMAN_SPEED 6
 
 Human::Human(BaseEngine* pEngine ) 
@@ -16,14 +15,10 @@ Human::Human(BaseEngine* pEngine )
 	m_iCurrentScreenY = m_iPreviousScreenY = (GetEngine()->GetScreenHeight() / 2); 
 	// The object coordinate will be the top left of the object 
 	m_iStartDrawPosX = 0; 
-	m_iStartDrawPosY = 0; 
-
-	m_iDrawWidth = m_iDrawHeight = HUMAN_CIRCUMFERENCE;
+	m_iStartDrawPosY = 0;
 
 	// And make it visible 
 	SetVisible(true); 
-
-
 }
 
 
@@ -40,6 +35,8 @@ void Human::Draw(void)
 		m_iCurrentScreenX, m_iCurrentScreenY, x.GetWidth(), x.GetHeight()
 		);
 
+	m_iDrawWidth = m_iDrawHeight = (float)x.GetWidth();
+
 	StoreLastScreenPositionAndUpdateRect();
 }
 
@@ -49,10 +46,15 @@ bool Human::isHuman(void)
 	return true;
 }
 
+int Human::getWidth(void)
+{
+
+	return m_iDrawWidth;
+}
+
 
 void Human::DoUpdate(int iCurrentTime)
 {
-
 	if ( GetEngine()->IsKeyPressed( SDLK_UP ) ) 
 		m_iCurrentScreenY -= HUMAN_SPEED; 
 	if ( GetEngine()->IsKeyPressed( SDLK_DOWN ) ) 

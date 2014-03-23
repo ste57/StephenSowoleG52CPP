@@ -3,12 +3,13 @@
 
 #include "NormalEnemy.h"
 #include "JPGImage.h"
+#include "math.h"
 
 #define MIN_ENEMY_SPEED 1.7
 #define MAX_ENEMY_SPPED 2.0//5
 
 NormalEnemy::NormalEnemy(BaseEngine* pEngine ) 
-	: EnemyProperties( pEngine ) 
+	: EnemyProperties( pEngine )
 {
 	// Current and previous coordinates for the object - set them the same 
 	//initially 
@@ -50,6 +51,8 @@ NormalEnemy::NormalEnemy(BaseEngine* pEngine )
 	m_iStartDrawPosX = 0; 
 	m_iStartDrawPosY = 0;
 
+	isReadyToDelete = false;
+
 	// And make it visible 
 	SetVisible(true); 
 }
@@ -62,13 +65,37 @@ NormalEnemy::~NormalEnemy(void)
 
 void NormalEnemy::Draw(void)
 {
-	ImageData x;
-	x.LoadImage("Images/Enemy/Enemy.png");
-	x.RenderImageWithMask( GetEngine()->GetForeground(),0,0,
-		m_iCurrentScreenX, m_iCurrentScreenY, x.GetWidth(), x.GetHeight()
-		);
+	if (!isReadyToDelete) {
 
-	m_iDrawWidth = m_iDrawHeight = x.GetWidth(); 
+		ImageData x;
+		x.LoadImage("Images/Enemy/Enemy.png");
+		x.RenderImageWithMask( GetEngine()->GetForeground(),0,0,
+			m_iCurrentScreenX, m_iCurrentScreenY, x.GetWidth(), x.GetHeight()
+			);
 
-	StoreLastScreenPositionAndUpdateRect();
+		m_iDrawHeight = m_iDrawWidth = x.GetWidth();
+
+		StoreLastScreenPositionAndUpdateRect();
+	}
+}
+
+void NormalEnemy::checkCollisions(int targetX, int targetY, int radius)
+{
+	float diffx = m_iCurrentScreenX - (targetX - m_iDrawWidth/2);
+	float diffy = m_iCurrentScreenY - (targetY - m_iDrawHeight/2);
+	diffx = pow(diffx, 2);
+	diffy = pow(diffy, 2);
+	float lengthIntersect = pow((diffx + diffy), 0.5f);
+
+	float distanceBetweenSprites = (radius + m_iDrawWidth) / 2;
+
+	if ( lengthIntersect <= distanceBetweenSprites ) {
+
+		isReadyToDelete = true;
+	}
+}
+
+bool NormalEnemy::readyToDelete(void) {
+
+	return isReadyToDelete;
 }
