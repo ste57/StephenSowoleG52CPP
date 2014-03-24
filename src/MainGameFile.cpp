@@ -134,9 +134,37 @@ void MainGameFile::powerupCollision(int position) {
 
 		if (powerup->canCollideWithHuman()) {
 
-			powerup->humanCollideUpdate(human->GetXCentre(),human->GetYCentre(),human->getWidth());
-		}
+			powerup->collideUpdate(human->GetXCentre(),human->GetYCentre(),human->getWidth());
 
+		} else {
+
+			Bomb* b = (Bomb*)powerup;
+
+			if (b->hasExploded()) {
+
+				b->setReadyToDelete(true);
+			}
+
+			for ( int i = 0 ; m_ppDisplayableObjects[i] != NULL; i++ )
+			{
+				if (m_ppDisplayableObjects[i]->isEnemy()) {
+
+					b->collideUpdate(m_ppDisplayableObjects[i]->GetXCentre(),m_ppDisplayableObjects[i]->GetYCentre(),m_ppDisplayableObjects[i]->getWidth());
+
+					if (b->hasExploded()) {
+
+						m_ppDisplayableObjects[i]->EnemyUpdate(b->GetXCentre(),b->GetYCentre(),b->getWidth());
+					}
+				}
+			}
+
+			if (!b->hasExploded()) {
+				GameRender();
+			}
+
+			b = NULL;
+			delete b;
+		}
 		break;
 
 	default:
@@ -149,7 +177,7 @@ void MainGameFile::powerupCollision(int position) {
 	Bomb *b = (Bomb*)m_ppDisplayableObjects[position];
 	//b->HumanCollision*/
 
-	
+
 	powerup = NULL;
 	delete powerup;
 }

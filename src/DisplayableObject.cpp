@@ -2,6 +2,7 @@
 #include "BaseEngine.h"
 
 #include "DisplayableObject.h"
+#include "math.h"
 
 
 // Constructor
@@ -41,6 +42,11 @@ void DisplayableObject::Draw()
 
 	// Store the position at which the object was last drawn.
 	StoreLastScreenPositionAndUpdateRect();
+}
+
+int DisplayableObject::getWidth(void) {
+
+	return m_iDrawWidth;
 }
 
 void DisplayableObject::setReadyToDelete(bool deleteToObject) {

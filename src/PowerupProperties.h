@@ -17,6 +17,6 @@ public:
 	virtual void setPowerupType(int powerup);
 	virtual bool canCollideWithHuman(void);
 	virtual void setCollideWithHuman(bool humanCollide);
-	virtual void humanCollideUpdate(int targetX, int targetY, int radius);
+	virtual void collideUpdate(int targetX, int targetY, int radius);
 };
 

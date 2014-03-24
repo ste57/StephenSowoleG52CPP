@@ -1,6 +1,5 @@
 #include "PowerupProperties.h"
 
-
 PowerupProperties::PowerupProperties(BaseEngine* pEngine ) 
 	: DisplayableObject( pEngine ) 
 {
@@ -33,7 +32,7 @@ bool PowerupProperties::canCollideWithHuman(void) {
 	return collideWithHuman;
 }
 
-void PowerupProperties::humanCollideUpdate(int targetX, int targetY, int radius) {
+void PowerupProperties::collideUpdate(int targetX, int targetY, int radius) {
 
 
 }

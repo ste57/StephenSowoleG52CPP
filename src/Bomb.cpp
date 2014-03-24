@@ -19,6 +19,7 @@ Bomb::Bomb(BaseEngine* pEngine )
 	m_iStartDrawPosY = 0;
 
 	setPowerupType(BOMB);
+	explode = false;
 
 	// And make it visible 
 	SetVisible(true); 
@@ -34,7 +35,20 @@ void Bomb::Draw(void) {
 	if (!readyToDelete()) {
 
 		ImageData x;
-		x.LoadImage("Images/Powerup/bomb.png");
+
+		if (canCollideWithHuman()) {
+
+			x.LoadImage("Images/Powerup/bomb.png");
+
+		} else if (!explode) {
+
+			x.LoadImage("Images/Objects/Mine.png");
+
+		} else {
+
+			x.LoadImage("Images/Objects/Explode.png");
+		}
+
 		x.RenderImageWithMask( GetEngine()->GetForeground(),0,0,
 			m_iCurrentScreenX, m_iCurrentScreenY, x.GetWidth(), x.GetHeight()
 			);
@@ -45,7 +59,7 @@ void Bomb::Draw(void) {
 	}
 }
 
-void Bomb::humanCollideUpdate(int targetX, int targetY, int radius) {
+void Bomb::collideUpdate(int targetX, int targetY, int radius) {
 
 	float diffx = m_iCurrentScreenX - (targetX - m_iDrawWidth/2);
 	float diffy = m_iCurrentScreenY - (targetY - m_iDrawHeight/2);
@@ -55,8 +69,20 @@ void Bomb::humanCollideUpdate(int targetX, int targetY, int radius) {
 
 	float distanceBetweenSprites = (radius + m_iDrawWidth) / 2;
 
-	if ( lengthIntersect <= distanceBetweenSprites ) {
+	if ( lengthIntersect <= distanceBetweenSprites) {
+		
+		if (canCollideWithHuman()) {
+		
+			setCollideWithHuman(false);
 
-		setReadyToDelete(true);
+		} else if (!explode) {
+
+			explode = true;
+		}
 	};
+}
+
+bool Bomb::hasExploded(void) {
+
+	return explode;
 }

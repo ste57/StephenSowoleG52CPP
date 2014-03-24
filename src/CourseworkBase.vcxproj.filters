@@ -200,11 +200,11 @@
     <ClCompile Include="Bomb.cpp">
       <Filter>Source Files\Powerups</Filter>
     </ClCompile>
-    <ClCompile Include="PowerupProperties.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerupProperties.cpp">
+      <Filter>Source Files\Powerups</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

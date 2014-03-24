@@ -27,6 +27,8 @@ public:
 
 	bool deleteObject;
 
+	virtual int getWidth(void);
+
 	virtual void setReadyToDelete(bool deleteToObject);
 
 	virtual bool readyToDelete(void);

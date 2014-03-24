@@ -46,13 +46,6 @@ bool Human::isHuman(void)
 	return true;
 }
 
-int Human::getWidth(void)
-{
-
-	return m_iDrawWidth;
-}
-
-
 void Human::DoUpdate(int iCurrentTime)
 {
 	if ( GetEngine()->IsKeyPressed( SDLK_UP ) ) 
