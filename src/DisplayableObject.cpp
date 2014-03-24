@@ -19,7 +19,8 @@ DisplayableObject::DisplayableObject(BaseEngine* pEngine) :
 	m_iDrawWidth(10),
 	m_iDrawHeight(10),
 	// Store pointer to the game object, for later use
-	m_pEngine(pEngine)
+	m_pEngine(pEngine),
+	deleteObject(false)
 {
 }
 
@@ -42,9 +43,14 @@ void DisplayableObject::Draw()
 	StoreLastScreenPositionAndUpdateRect();
 }
 
+void DisplayableObject::setReadyToDelete(bool deleteToObject) {
+
+	deleteObject = deleteToObject;
+}
+
 bool DisplayableObject::readyToDelete(void) {
 
-	return false;
+	return deleteObject;
 }
 
 bool DisplayableObject::isHuman(void) {

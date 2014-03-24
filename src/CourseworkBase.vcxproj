@@ -89,6 +89,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bomb.h" />
+    <ClInclude Include="Config.h" />
     <ClInclude Include="EnemyProperties.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="BaseEngine.h" />
@@ -99,6 +100,7 @@
     <ClInclude Include="MainGameFile.h" />
     <ClInclude Include="MovementPosition.h" />
     <ClInclude Include="NormalEnemy.h" />
+    <ClInclude Include="PowerupProperties.h" />
     <ClInclude Include="templates.h" />
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="BouncingBall.h" />
@@ -128,6 +130,8 @@
     <ClCompile Include="MainGameFile.cpp" />
     <ClCompile Include="MyProjectMain.cpp" />
     <ClCompile Include="NormalEnemy.cpp" />
+    <ClCompile Include="PowerupProperties.cpp" />
+    <ClCompile Include="Source.cpp" />
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="BouncingBall.cpp" />
     <ClCompile Include="BouncingBallMain.cpp" />

@@ -25,7 +25,9 @@ public:
 
 	/** my methods**/
 
+	bool deleteObject;
 
+	virtual void setReadyToDelete(bool deleteToObject);
 
 	virtual bool readyToDelete(void);
 

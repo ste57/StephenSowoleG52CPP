@@ -20,5 +20,7 @@ public:
 	void addEnemy(void);
 	void spawnPowerups(int iCurrentTime);
 	void addPowerup(void);
+	void powerupCollision(int position);
+	void enemyCollision(int position);
 };
 

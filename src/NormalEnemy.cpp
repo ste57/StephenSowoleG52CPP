@@ -51,8 +51,6 @@ NormalEnemy::NormalEnemy(BaseEngine* pEngine )
 	m_iStartDrawPosX = 0; 
 	m_iStartDrawPosY = 0;
 
-	isReadyToDelete = false;
-
 	// And make it visible 
 	SetVisible(true); 
 }
@@ -65,7 +63,7 @@ NormalEnemy::~NormalEnemy(void)
 
 void NormalEnemy::Draw(void)
 {
-	if (!isReadyToDelete) {
+	if (!readyToDelete()) {
 
 		ImageData x;
 		x.LoadImage("Images/Enemy/Enemy.png");
@@ -91,13 +89,8 @@ void NormalEnemy::checkCollisions(int targetX, int targetY, int radius)
 
 	if ( lengthIntersect <= distanceBetweenSprites ) {
 
-		isReadyToDelete = true;
+		setReadyToDelete(true);
 	}
-}
-
-bool NormalEnemy::readyToDelete(void) {
-
-	return isReadyToDelete;
 }
 
 bool NormalEnemy::isEnemy(void) {

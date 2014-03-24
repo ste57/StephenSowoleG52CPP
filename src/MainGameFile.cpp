@@ -1,10 +1,13 @@
 #include "header.h"
 #include "templates.h"
 
+#include "Config.h"
+
 #include "MainGameFile.h"
 #include "NormalEnemy.h"
 #include "JPGImage.h"
 #include "Bomb.h"
+#include "PowerupProperties.h"
 
 #include "time.h"
 
@@ -25,6 +28,7 @@ MainGameFile::~MainGameFile(void)
 	delete m_ppDisplayableObjects[0];
 	m_ppDisplayableObjects = NULL;
 	human = NULL;
+	delete human;
 }
 
 int MainGameFile::InitialiseObjects(void)
@@ -101,11 +105,11 @@ void MainGameFile::UpdateAllObjects(int iCurrentTime)
 
 			} else if (m_ppDisplayableObjects[i]->isEnemy() == true) {
 
-				m_ppDisplayableObjects[i]->EnemyUpdate(human->GetXCentre(),human->GetYCentre(),human->getWidth());
+				enemyCollision(i);
 
 			} else {
 
-				m_ppDisplayableObjects[i]->PowerupUpdate(m_ppDisplayableObjects);
+				powerupCollision(i);
 			}
 
 			if ( m_iDrawableObjectsChanged )
@@ -114,9 +118,45 @@ void MainGameFile::UpdateAllObjects(int iCurrentTime)
 	}
 }
 
+void MainGameFile::enemyCollision(int position) {
+
+	m_ppDisplayableObjects[position]->EnemyUpdate(human->GetXCentre(),human->GetYCentre(),human->getWidth());
+}
+
+void MainGameFile::powerupCollision(int position) {
+
+	PowerupProperties *powerup = (PowerupProperties*)m_ppDisplayableObjects[position];
+
+	switch (powerup->getPowerupType())
+	{
+
+	case BOMB:
+
+		if (powerup->canCollideWithHuman()) {
+
+			powerup->humanCollideUpdate(human->GetXCentre(),human->GetYCentre(),human->getWidth());
+		}
+
+		break;
+
+	default:
+		break;
+	}
+
+
+	/*m_ppDisplayableObjects[position]->PowerupUpdate(m_ppDisplayableObjects);
+
+	Bomb *b = (Bomb*)m_ppDisplayableObjects[position];
+	//b->HumanCollision*/
+
+	
+	powerup = NULL;
+	delete powerup;
+}
+
 void MainGameFile::spawnPowerups(int iCurrentTime) {
 
-	if (((iCurrentTime - powerupTimeStart) >= POWERUP_SPAWN_TIME) && (powerupCounter <= MAX_POWERUP_COUNT) && (arrayCounter < MAX_OBJECTS)) {
+	if (((iCurrentTime - powerupTimeStart) >= POWERUP_SPAWN_TIME) && (powerupCounter < MAX_POWERUP_COUNT) && (arrayCounter < MAX_OBJECTS)) {
 
 		addPowerup();
 		powerupTimeStart = iCurrentTime;
@@ -132,7 +172,7 @@ void MainGameFile::addPowerup(void) {
 
 void MainGameFile::spawnEnemies(int iCurrentTime) {
 
-	if (((iCurrentTime - spawnTimeStart) >= ENEMY_SPAWN_TIME) && (enemyCounter <= MAX_ENEMY_COUNT) && (arrayCounter < MAX_OBJECTS)) {
+	if (((iCurrentTime - spawnTimeStart) >= ENEMY_SPAWN_TIME) && (enemyCounter < MAX_ENEMY_COUNT) && (arrayCounter < MAX_OBJECTS)) {
 
 		addEnemy();
 		spawnTimeStart = iCurrentTime;

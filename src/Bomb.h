@@ -1,12 +1,13 @@
 #pragma once
-#include "displayableobject.h"
+#include "PowerupProperties.h"
 class Bomb :
-	public DisplayableObject
+	public PowerupProperties
 {
 public:
 	Bomb(BaseEngine* pEngine);
 	~Bomb(void);
 	void Draw(void);
-	void PowerupUpdate(DisplayableObject ** enemyArray);
+
+	void humanCollideUpdate(int targetX, int targetY, int radius);
 };
 
