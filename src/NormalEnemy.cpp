@@ -60,7 +60,6 @@ NormalEnemy::~NormalEnemy(void)
 {
 }
 
-
 void NormalEnemy::Draw(void)
 {
 	if (!readyToDelete()) {
@@ -83,6 +82,7 @@ void NormalEnemy::checkCollisions(int targetX, int targetY, int radius)
 	float diffy = m_iCurrentScreenY - (targetY - m_iDrawHeight/2);
 	diffx = pow(diffx, 2);
 	diffy = pow(diffy, 2);
+
 	float lengthIntersect = pow((diffx + diffy), 0.5f);
 
 	float distanceBetweenSprites = (radius + m_iDrawWidth) / 2;

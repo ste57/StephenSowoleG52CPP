@@ -1,11 +1,13 @@
 #include "EnemyProperties.h"
 #include "math.h"
+#include "Config.h"
 
 
 EnemyProperties::EnemyProperties (BaseEngine* pEngine ) 
 	: DisplayableObject( pEngine ) 
 {
 
+	retreat = false;
 }
 
 
@@ -23,8 +25,31 @@ void EnemyProperties::EnemyUpdate(int targetX, int targetY, int radius) {
 
 	if (diff_X != 0 || diff_Y != 0) {
 
-		m_iCurrentScreenX += ((diff_X/z) * speed);
-		m_iCurrentScreenY += ((diff_Y/z) * speed);
+		if (!retreat) {
+
+			m_iCurrentScreenX += ((diff_X/z) * speed);
+			m_iCurrentScreenY += ((diff_Y/z) * speed);
+
+		} else {
+			
+			if (m_iCurrentScreenX > 0 && m_iCurrentScreenX < (BASE_SCREEN_WIDTH - m_iDrawWidth)) {
+
+				m_iCurrentScreenX -= ((diff_X/z) * 1.15);
+
+			} else if (m_iCurrentScreenX < 0 || m_iCurrentScreenX > (BASE_SCREEN_WIDTH - m_iDrawWidth)) {
+
+				m_iCurrentScreenX += ((diff_X/z) * speed);
+			}
+
+			if (m_iCurrentScreenY > 0 && m_iCurrentScreenY < (BASE_SCREEN_HEIGHT - m_iDrawHeight)) {
+
+				m_iCurrentScreenY -= ((diff_Y/z) * 1.15);
+
+			} else if (m_iCurrentScreenY < 0 || m_iCurrentScreenY > (BASE_SCREEN_HEIGHT - m_iDrawHeight)) {
+
+				m_iCurrentScreenY += ((diff_Y/z) * speed);
+			}
+		}
 	}
 
 	checkCollisions(targetX, targetY, radius);
@@ -33,7 +58,17 @@ void EnemyProperties::EnemyUpdate(int targetX, int targetY, int radius) {
 	RedrawObjects();
 }
 
-void EnemyProperties::checkCollisions(int targetX, int targetY, int radius)
+void EnemyProperties::setRetreat(bool retreatSet) {
+
+	retreat = retreatSet;
+}
+
+bool EnemyProperties::isRetreating(void) {
+
+	return retreat;
+}
+
+void EnemyProperties::checkCollisions(int targetX, int targetY, int radiusy)
 {
 }
 

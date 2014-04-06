@@ -7,12 +7,14 @@
 #include "NormalEnemy.h"
 #include "JPGImage.h"
 #include "Bomb.h"
+#include "Light.h"
+#include "Super.h"
 #include "PowerupProperties.h"
 
 #include "time.h"
 
 #define MAX_OBJECTS 100
-#define MAX_ENEMY_COUNT 20
+#define MAX_ENEMY_COUNT 5
 #define ENEMY_SPAWN_TIME 2000
 
 #define MAX_POWERUP_COUNT 2
@@ -54,6 +56,10 @@ int MainGameFile::InitialiseObjects(void)
 	powerupCounter = 0;
 	spawnTimeStart = 0;
 	powerupTimeStart = 0;
+	superPowerCounter = 0;
+	lightActive = false;
+	superActive = false;
+	lifeLost = false;
 
 	return 0;
 }
@@ -89,6 +95,8 @@ void MainGameFile::UpdateAllObjects(int iCurrentTime)
 
 	m_iDrawableObjectsChanged = 0;
 
+//	enemyCounter = 0;
+
 	if ( m_ppDisplayableObjects != NULL )
 	{
 		for ( int i = 0 ; m_ppDisplayableObjects[i] != NULL ; i++ )
@@ -105,7 +113,10 @@ void MainGameFile::UpdateAllObjects(int iCurrentTime)
 
 			} else if (m_ppDisplayableObjects[i]->isEnemy() == true) {
 
-				enemyCollision(i);
+				if (!lifeLost) {
+
+					enemyCollision(i);
+				}
 
 			} else {
 
@@ -115,12 +126,64 @@ void MainGameFile::UpdateAllObjects(int iCurrentTime)
 			if ( m_iDrawableObjectsChanged )
 				return; // Abort! Something changed in the array
 		}
+
+		if (superPowerCounter == 0) {
+
+			superPowerCounter = iCurrentTime;
+		}
+
+		if (superActive && (iCurrentTime - superPowerCounter) >= SUPER_ACTIVE_TIME*1000) {
+
+			EnemyProperties* b;
+
+			for ( int i = 0 ; m_ppDisplayableObjects[i] != NULL; i++ )
+			{
+				if (m_ppDisplayableObjects[i]->isEnemy()) {
+
+					b = (EnemyProperties*)m_ppDisplayableObjects[i];
+					b->setRetreat(false);
+				}
+			}
+
+			superActive = false;
+			human->setPower(false);
+
+			b = NULL;
+			delete b;
+		}
 	}
 }
 
 void MainGameFile::enemyCollision(int position) {
 
-	m_ppDisplayableObjects[position]->EnemyUpdate(human->GetXCentre(),human->GetYCentre(),human->getWidth());
+	EnemyProperties* b = (EnemyProperties*)m_ppDisplayableObjects[position];
+
+	if (!lightActive) {
+
+		if (superActive && !b->isRetreating()) {
+
+			b->setRetreat(true);
+
+		}
+
+		if (!b->isRetreating()) {
+
+			b->EnemyUpdate(human->GetXCentre(),human->GetYCentre(),human->getWidth());
+
+			if (b->readyToDelete()) {
+
+				lifeLost = true;
+				printf("somewhere new\n");
+			}
+
+		} else {
+
+			b->EnemyUpdate(human->GetXCentre(),human->GetYCentre(),human->getWidth());
+		}
+	}
+
+	b = NULL;
+	delete b;
 }
 
 void MainGameFile::powerupCollision(int position) {
@@ -135,6 +198,11 @@ void MainGameFile::powerupCollision(int position) {
 		if (powerup->canCollideWithHuman()) {
 
 			powerup->collideUpdate(human->GetXCentre(),human->GetYCentre(),human->getWidth());
+
+			if (!(powerup->canCollideWithHuman())) {
+
+				powerupCounter--;
+			}
 
 		} else {
 
@@ -153,12 +221,17 @@ void MainGameFile::powerupCollision(int position) {
 
 					if (b->hasExploded()) {
 
-						m_ppDisplayableObjects[i]->EnemyUpdate(b->GetXCentre(),b->GetYCentre(),b->getWidth());
+						m_ppDisplayableObjects[i]->EnemyUpdate(b->GetXCentre(),b->GetYCentre(),b->getWidth());	
+
+						//if (m_ppDisplayableObjects[i]->readyToDelete()) {
+
+						//	enemyCounter--;
+						//}
 					}
 				}
 			}
 
-			if (!b->hasExploded()) {
+			if (b->hasExploded()) {
 				GameRender();
 			}
 
@@ -167,16 +240,63 @@ void MainGameFile::powerupCollision(int position) {
 		}
 		break;
 
+	case LIGHT:
+
+		if (powerup->canCollideWithHuman()) {
+
+			powerup->collideUpdate(human->GetXCentre(),human->GetYCentre(),human->getWidth());
+
+			if (!(powerup->canCollideWithHuman())) {
+
+				lightActive = true;
+				powerupCounter--;
+			}
+
+		} else {
+
+			Light* b = (Light*)powerup;
+
+			for ( int i = 0 ; m_ppDisplayableObjects[i] != NULL; i++ )
+			{
+				if (m_ppDisplayableObjects[i]->isEnemy()) {
+
+					m_ppDisplayableObjects[i]->EnemyUpdate(b->GetXCentre(),b->GetYCentre(),b->getWidth());
+
+					b->collideUpdate(m_ppDisplayableObjects[i]->GetXCentre(),m_ppDisplayableObjects[i]->GetYCentre(),m_ppDisplayableObjects[i]->getWidth());
+				}
+			}
+
+			if (b->readyToDelete()) {
+
+				lightActive = false;
+			}
+
+			b = NULL;
+			delete b;
+		}
+
+		break;
+
+	case SUPER:
+
+		if (powerup->canCollideWithHuman()) {
+
+			powerup->collideUpdate(human->GetXCentre(),human->GetYCentre(),human->getWidth());
+
+			if (!(powerup->canCollideWithHuman())) {
+
+				superActive = true;
+				human->setPower(true);
+				superPowerCounter = 0;
+				powerupCounter--;
+			}
+		}
+
+		break;
+
 	default:
 		break;
 	}
-
-
-	/*m_ppDisplayableObjects[position]->PowerupUpdate(m_ppDisplayableObjects);
-
-	Bomb *b = (Bomb*)m_ppDisplayableObjects[position];
-	//b->HumanCollision*/
-
 
 	powerup = NULL;
 	delete powerup;
@@ -193,7 +313,34 @@ void MainGameFile::spawnPowerups(int iCurrentTime) {
 
 void MainGameFile::addPowerup(void) {
 
-	m_ppDisplayableObjects[arrayCounter] = new Bomb(this);
+	switch (rand() % NUMBER_OF_POWERUPS)
+	{
+
+	case 0:
+		m_ppDisplayableObjects[arrayCounter] = new Bomb(this);
+		break;
+
+	case 1:
+
+		if (!lightActive) {
+
+			m_ppDisplayableObjects[arrayCounter] = new Light(this);
+
+		} else {
+
+			m_ppDisplayableObjects[arrayCounter] = new Bomb(this);
+		}
+		break;
+
+	case 2:
+		m_ppDisplayableObjects[arrayCounter] = new Super(this);
+		break;
+
+	default:
+		break;
+	}
+
+
 	arrayCounter++;
 	powerupCounter++;
 }
@@ -224,5 +371,4 @@ void MainGameFile::removeObject(int position) {
 	}
 
 	arrayCounter--;
-	enemyCounter--;
 }

@@ -5,10 +5,13 @@
 class MainGameFile :
 	public BaseEngine
 {
-public:
 
-	int arrayCounter, enemyCounter, powerupCounter, spawnTimeStart, powerupTimeStart;
+private:
+	bool lightActive, superActive, lifeLost;
+	int arrayCounter, enemyCounter, powerupCounter, superPowerCounter, spawnTimeStart, powerupTimeStart;
 	Human* human;
+
+public:
 
 	MainGameFile(void);
 	~MainGameFile(void);

@@ -4,9 +4,7 @@
 
 // Needs one of the following #includes, to include the class definition
 #include "MainGameFile.h"
-
-#define BASE_SCREEN_WIDTH 800
-#define BASE_SCREEN_HEIGHT 600
+#include "Config.h"
 
 
 

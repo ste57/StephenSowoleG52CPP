@@ -17,6 +17,9 @@ Human::Human(BaseEngine* pEngine )
 	m_iStartDrawPosX = 0; 
 	m_iStartDrawPosY = 0;
 
+	power = false;
+	transition = false;
+
 	// And make it visible 
 	SetVisible(true); 
 }
@@ -26,18 +29,39 @@ Human::~Human(void)
 {
 }
 
+void Human::setPower(bool powerSet) {
+
+	if (powerSet == false) {
+		transition = true;
+	}
+	power = powerSet;
+}
 
 void Human::Draw(void)
 {
 	ImageData x;
-	x.LoadImage("Images/Human/human.png");
-	x.RenderImageWithMask( GetEngine()->GetForeground(),0,0,
-		m_iCurrentScreenX, m_iCurrentScreenY, x.GetWidth(), x.GetHeight()
-		);
 
-	m_iDrawWidth = m_iDrawHeight = (float)x.GetWidth();
+	if (!power) {
 
-	StoreLastScreenPositionAndUpdateRect();
+		x.LoadImage("Images/Human/human.png");
+	} else {
+
+		x.LoadImage("Images/Human/SuperHuman.png");
+	}
+
+	if (!transition) {
+
+		x.RenderImageWithMask( GetEngine()->GetForeground(),0,0,
+			m_iCurrentScreenX, m_iCurrentScreenY, x.GetWidth(), x.GetHeight()
+			);
+
+		m_iDrawWidth = m_iDrawHeight = (float)x.GetWidth();
+
+		StoreLastScreenPositionAndUpdateRect();
+	} else {
+
+		transition = !transition;
+	}
 }
 
 bool Human::isHuman(void)

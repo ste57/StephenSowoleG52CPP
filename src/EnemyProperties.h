@@ -3,9 +3,14 @@
 class EnemyProperties :
 	public DisplayableObject
 {
-public:
+private:
+	bool retreat;
 	float speed;
 
+public:
+
+	bool isRetreating(void);
+	void setRetreat(bool retreatSet);
 	EnemyProperties(BaseEngine* pEngine);
 	~EnemyProperties(void);
 	void EnemyUpdate(int targetX, int targetY, int radius);

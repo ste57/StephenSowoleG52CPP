@@ -123,6 +123,12 @@
     <ClInclude Include="Config.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Super.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainfunction.cpp">
@@ -204,6 +210,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PowerupProperties.cpp">
+      <Filter>Source Files\Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Source Files\Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="Super.cpp">
       <Filter>Source Files\Powerups</Filter>
     </ClCompile>
   </ItemGroup>
